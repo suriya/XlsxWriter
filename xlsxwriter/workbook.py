@@ -620,6 +620,9 @@ class Workbook(xmlwriter.XMLwriter):
 
         # Close the file.
         self._xml_close()
+        
+    def _get_packager(self):
+        return Packager()
 
     def _store_workbook(self):
 
@@ -631,7 +634,7 @@ class Workbook(xmlwriter.XMLwriter):
             raise e
 
         # Assemble worksheets into a workbook.
-        packager = Packager()
+        packager = self._get_packager()
 
         # Add a default worksheet if non have been added.
         if not self.worksheets():
